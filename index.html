@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Buku Pemweb</title>
+    <link rel="stylesheet" href="style-1.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Daftar Buku Pemweb</h2>
+        <input type="text" id="inputBuku" placeholder="Tambah judul buku...">
+        <button onclick="tambahBuku()">Tambah</button>
+        <input type="text" id="searchBuku" placeholder="Masukkan judul buku...">
+        <button onclick="cariBuku()">Cari</button>
+        <button onclick="resetPencarian()">Reset</button>
+        <ul id="listBuku"></ul>
+    </div>
+
+    <script >
+function tambahBuku() {
+    let judulBuku = document.getElementById("inputBuku").value;
+    let ul = document.getElementById("listBuku");
+    let li = document.createElement("li");
+    li.appendChild(document.createTextNode(judulBuku));
+    let hapusButton = document.createElement("button");
+    hapusButton.innerHTML = "Hapus";
+    hapusButton.onclick = function() {
+        ul.removeChild(li);
+    }
+    li.appendChild(hapusButton);
+    ul.appendChild(li);
+    document.getElementById("inputBuku").value = "";
+}
+
+function cariBuku() {
+    let filter = document.getElementById("searchBuku").value.toUpperCase();
+    let ul = document.getElementById("listBuku");
+    let li = ul.getElementsByTagName("li");
+    for (let i = 0; i < li.length; i++) {
+        if (li[i].textContent.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+function resetPencarian() {
+    document.getElementById("searchBuku").value = "";
+    let ul = document.getElementById("listBuku");
+    let li = ul.getElementsByTagName("li");
+    for (let i = 0; i < li.length; i++) {
+        li[i].style.display = "";
+    }
+}
+    </script>
+
+    <style>
+        /* style-1.css */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+button.hapus {
+    background-color: #e74c3c;
+}
+
+body{
+    background-image: url(dowload1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+    </style>
+</body>
+</html>
